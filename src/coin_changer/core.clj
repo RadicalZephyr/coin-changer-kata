@@ -6,6 +6,9 @@
 (defn coins-for-denomination [denom num-coins]
   (repeat num-coins denom))
 
+(defn value-of [coin-list]
+  (reduce + coin-list))
+
 (defn change-coins [amount]
   (vec
    (loop [amount        amount
@@ -15,7 +18,7 @@
        (let [[denom & denominations] denominations
              num-coins (number-of-coins denom amount)
              coin-list (coins-for-denomination denom num-coins)
-             coins-value (* num-coins denom)]
+             coins-value (value-of coin-list)]
          (recur (- amount coins-value)
                 denominations
                 (concat result coin-list)))
