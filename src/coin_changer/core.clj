@@ -9,7 +9,7 @@
 (defn value-of [coin-list]
   (reduce + coin-list))
 
-(defn change-coins [amount]
+(defn change-coins-iter [amount]
   (vec
    (loop [amount        amount
           denominations [25 10 5 1]
@@ -23,3 +23,6 @@
                 denominations
                 (concat result coin-list)))
        result))))
+
+(defn change-coins [amount]
+  (change-coins-iter amount))
