@@ -1,5 +1,8 @@
 (ns coin-changer.core)
 
+(defn coins-for-denomination [denom num-coins]
+  (repeat num-coins denom))
+
 (defn change-coins [amount]
   (vec
    (loop [amount        amount
@@ -11,5 +14,5 @@
              coins-value (* num-coins denom)]
          (recur (- amount coins-value)
                 denominations
-                (concat result (repeat num-coins denom))))
+                (concat result (coins-for-denomination denom num-coins))))
        result))))
