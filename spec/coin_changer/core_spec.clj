@@ -9,4 +9,8 @@
 
   (it "Should change 4 cent"
     (should= [1 1 1 1]
-             (change-coins 4))))
+             (change-coins 4)))
+
+  (it "Should change 5 cents"
+    (should= [5]
+             (change-coins 5))))
