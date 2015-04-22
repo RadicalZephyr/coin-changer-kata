@@ -24,6 +24,7 @@
              (change-coins 18))))
 
 (describe "Coin changer state"
+
   (it "Should start out empty and with an amount"
     (let [amount 27
           cc (base-coin-changer amount)]
@@ -48,4 +49,12 @@
     (let [cc (base-coin-changer 37)]
       (should= {:amount 12
                 :coins [25]}
-               (update-coins-for-denomination cc 25)))))
+               (update-coins-for-denomination cc 25))))
+
+  (it "Should deal with two updates correctly"
+    (let [cc (base-coin-changer 37)]
+      (should= {:amount 2
+                :coins [25 10]}
+               (-> cc
+                   (update-coins-for-denomination 25)
+                   (update-coins-for-denomination 10))))))
