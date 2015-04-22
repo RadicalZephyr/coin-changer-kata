@@ -24,5 +24,20 @@
                 (concat result coin-list)))
        result))))
 
+(defn base-coin-changer [amount]
+  {:amount amount
+   :coins []})
+
+(defn update-coins-for-denomination [coin-changer denom]
+  (let [num-coins (number-of-coins denom (:amount coin-changer))]
+    (-> coin-changer
+        (update-in [:coins] #(concat % (coins-for-denomination denom num-coins)))
+        (update-in [:amount] #(rem % denom)))))
+
+(defn change-coins-fun [amount]
+  (:coins (reduce update-coins-for-denomination
+                  (base-coin-changer amount)
+                  [25 10 5 1])))
+
 (defn change-coins [amount]
   (change-coins-iter amount))
