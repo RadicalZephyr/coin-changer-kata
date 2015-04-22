@@ -3,7 +3,7 @@
 (defn change-coins [amount]
   (vec
    (loop [amount        amount
-          denominations [5 1]
+          denominations [25 10 5 1]
           result        []]
      (if (seq denominations)
        (let [[denom & denominations] denominations
