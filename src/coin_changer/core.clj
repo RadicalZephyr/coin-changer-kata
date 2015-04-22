@@ -40,4 +40,4 @@
                   [25 10 5 1])))
 
 (defn change-coins [amount]
-  (change-coins-iter amount))
+  (change-coins-fun amount))
