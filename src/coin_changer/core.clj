@@ -1,4 +1,4 @@
 (ns coin-changer.core)
 
 (defn change-coins [amount]
-  [1])
+  (repeat amount 1))
