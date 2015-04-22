@@ -14,8 +14,9 @@
      (if (seq denominations)
        (let [[denom & denominations] denominations
              num-coins (number-of-coins denom amount)
+             coin-list (coins-for-denomination denom num-coins)
              coins-value (* num-coins denom)]
          (recur (- amount coins-value)
                 denominations
-                (concat result (coins-for-denomination denom num-coins))))
+                (concat result coin-list)))
        result))))
