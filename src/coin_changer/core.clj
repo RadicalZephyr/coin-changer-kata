@@ -25,12 +25,12 @@
           denominations [25 10 5 1]
           result        []]
      (if (seq denominations)
-       (let [[denom & denominations] denominations
+       (let [[denom & denominations] denominations ; Use destructuring to separate denominations into a first and rest
              num-coins (number-of-coins denom amount)
              coin-list (coins-for-denomination denom num-coins)
              coins-value (value-of coin-list)]
          (recur (- amount coins-value)
-                denominations
+                denominations  ; Use the implicit rest from the destructuring
                 (concat result coin-list)))
        result))))
 
