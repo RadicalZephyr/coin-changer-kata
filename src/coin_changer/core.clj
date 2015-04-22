@@ -1,7 +1,7 @@
 (ns coin-changer.core)
 
 (defn number-of-coins [denom amount]
-  (int (/ amount denom)))
+  (quot amount denom))
 
 (defn coins-for-denomination [denom num-coins]
   (repeat num-coins denom))
