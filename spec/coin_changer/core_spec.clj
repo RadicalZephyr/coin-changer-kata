@@ -5,4 +5,8 @@
 (describe "Changing coins"
   (it "Should change 1 cent"
     (should= [1]
-             (change-coins 1))))
+             (change-coins 1)))
+
+  (it "Should change 4 cent"
+    (should= [1 1 1 1]
+             (change-coins 4))))
