@@ -1,5 +1,12 @@
 (ns coin-changer.core)
 
+;; Helper functions
+
+;; These were extracted from the body of change-coins-iter largely for
+;; readability and to give the concepts they represent names.
+;; Conveniently, the first two were useful enough to be directly
+;; reused in change-coins-fn
+
 (defn number-of-coins [denom amount]
   (quot amount denom))
 
@@ -8,6 +15,9 @@
 
 (defn value-of [coin-list]
   (reduce + coin-list))
+
+
+;; Imperative Style
 
 (defn change-coins-iter [amount]
   (vec
@@ -24,6 +34,14 @@
                 (concat result coin-list)))
        result))))
 
+
+;; Stream-Oriented Style
+
+;; The basic concept here is that we're explicitly modeling the state
+;; of our coin changer as a map of amount and the coin list built so
+;; far. Then we define a function that updates this application state
+;; by applying the changes for a specific denomination.
+
 (defn base-coin-changer [amount]
   {:amount amount
    :coins []})
@@ -38,6 +56,9 @@
   (:coins (reduce update-coins-for-denomination
                   (base-coin-changer amount)
                   [25 10 5 1])))
+
+
+;; Change which change-coins-* function is called here to test both.
 
 (defn change-coins [amount]
   (change-coins-fun amount))
