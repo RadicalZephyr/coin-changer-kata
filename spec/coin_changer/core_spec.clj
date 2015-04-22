@@ -13,4 +13,12 @@
 
   (it "Should change 5 cents"
     (should= [5]
-             (change-coins 5))))
+             (change-coins 5)))
+
+  (it "Should change 7 cents"
+    (should= [5 1 1]
+             (change-coins 7)))
+
+  (it "Should change 18 cents"
+    (should= [10 5 1 1 1]
+             (change-coins 18))))
